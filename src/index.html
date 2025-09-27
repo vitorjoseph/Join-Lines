@@ -10,15 +10,32 @@
     <h1>Join Lines</h1>
     <div class="container">
         <div class="input-box">
+            <div class="button-group">
+                <button id="pasteButton" title="Colar texto da área de transferência">📋</button>
+                <button id="clearButton" title="Limpar o texto">🗑️</button>
+                <button id="undoButton" title="Desfazer última alteração">↩️</button>
+            </div>
             <textarea id="inputText" placeholder="Cole seu texto aqui..."></textarea>
+            <div class="counter-container">
+                <div id="inputCharCounter" class="char-counter">0 caracteres</div>
+                <div id="inputWordCounter" class="word-counter">0 palavras</div>
+                <div id="inputLineCounter" class="line-counter">0 linhas</div>
+            </div>
         </div>
         <div class="output-box">
             <textarea id="outputText" placeholder="Texto processado aparecerá aqui..." readonly></textarea>
+            <div class="counter-container">
+                <div id="outputCharCounter" class="char-counter">0 caracteres</div>
+                <div id="outputWordCounter" class="word-counter">0 palavras</div>
+                <div id="outputLineCounter" class="line-counter">0 linhas</div>
+            </div>
+            <button id="copyButton">📄 Copiar</button>
         </div>
     </div>
     <footer class="footer">
         <p>© 2025 Vítor Bastos</p>
     </footer>
+    <div id="notification" class="notification hidden"></div>
     <script src="script.js"></script>
 </body>
 </html>

@@ -3,14 +3,33 @@ const path = require('path');
 
 let mainWindow;
 
-app.whenReady().then(() => {
+function createWindow() {
     mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
         webPreferences: {
-            nodeIntegration: true, 
+            nodeIntegration: true,
         }
     });
 
-    mainWindow.loadFile(path.join(__dirname, 'src', 'index.html')); 
+    mainWindow.loadFile(path.join(__dirname, 'src', 'index.html'));
+
+    mainWindow.on('closed', () => {
+        mainWindow = null;
+    });
+}
+
+app.whenReady().then(createWindow);
+
+// Encerra o app quando todas as janelas forem fechadas (exceto no macOS)
+app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') {
+        app.quit();
+    }
+});
+
+app.on('activate', () => {
+    if (mainWindow === null) {
+        createWindow();
+    }
 });

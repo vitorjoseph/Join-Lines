@@ -13,9 +13,16 @@ h1 {
 .container {
     display: flex;
     gap: 10px;
-    height: 70vh;
+    height: 60vh;
     max-width: 1200px;
     margin: 0 auto;
+}
+
+.input-box, .output-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }
 
 textarea {
@@ -29,28 +36,104 @@ textarea {
     box-sizing: border-box;
 }
 
-.input-box, .output-box {
-    flex: 1;
+.button-group {
+    position: absolute;
+    top: -35px;
+    left: 0;
     display: flex;
-    flex-direction: column;
+    gap: 5px;
 }
 
+.button-group button {
+    padding: 5px 8px;
+    font-size: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: #ddd;
+}
+
+.button-group button:hover {
+    background-color: #bbb;
+}
+
+/* 🔹 Contadores alinhados em linha */
+.counter-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    margin-top: 5px;
+    color: #666;
+    gap: 10px;
+}
+
+/* 🔹 Faz os contadores ocuparem o mesmo espaço */
+.counter-container div {
+    flex: 1;
+    text-align: center;
+    padding: 5px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Adicionando cores para alertas */
+.char-counter.warning, .word-counter.warning, .line-counter.warning {
+    color: #ffc107;
+}
+
+.char-counter.error, .word-counter.error, .line-counter.error {
+    color: #dc3545;
+}
+
+.output-box button {
+    margin-top: 10px;
+    padding: 8px 12px;
+    font-size: 14px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.output-box button:hover {
+    background-color: #0056b3;
+}
 
 .footer {
     text-align: center;
     padding: 15px 0;
     color: #666;
     font-size: 14px;
-    margin-top: 20px; 
-    background-color: #ffffff; 
-    border-top: 1px solid #ddd; 
-    transition: opacity 0.3s ease; 
+    margin-top: 20px;
 }
 
-.footer p {
-    margin: 0;
+.hidden {
+    display: none;
 }
 
-.footer:hover {
-    opacity: 0.9; 
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    z-index: 10000;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.4s ease-in-out;
+}
+
+.notification.show {
+    opacity: 1;
+    transform: translateY(0);
 }
