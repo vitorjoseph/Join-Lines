@@ -36,6 +36,11 @@ textarea {
     box-sizing: border-box;
 }
 
+textarea.invalid-sql {
+    border-color: red;
+    outline: red;
+}
+
 .button-group {
     position: absolute;
     top: -35px;
@@ -58,40 +63,16 @@ textarea {
     background-color: #bbb;
 }
 
-/* 🔹 Contadores alinhados em linha */
-.counter-container {
+.button-group-output {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    font-size: 14px;
-    margin-top: 5px;
-    color: #666;
-    gap: 10px;
-}
-
-/* 🔹 Faz os contadores ocuparem o mesmo espaço */
-.counter-container div {
-    flex: 1;
-    text-align: center;
-    padding: 5px;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-/* Adicionando cores para alertas */
-.char-counter.warning, .word-counter.warning, .line-counter.warning {
-    color: #ffc107;
-}
-
-.char-counter.error, .word-counter.error, .line-counter.error {
-    color: #dc3545;
-}
-
-.output-box button {
     margin-top: 10px;
+}
+
+.copy {
+    flex: 2;
     padding: 8px 12px;
-    font-size: 14px;
+    margin-right: 5px;
     background-color: #007bff;
     color: white;
     border: none;
@@ -100,8 +81,23 @@ textarea {
     transition: background-color 0.3s ease;
 }
 
-.output-box button:hover {
+.validate {
+    flex: 1;
+    padding: 8px 12px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.copy:hover {
     background-color: #0056b3;
+}
+
+.validate:hover {
+    background-color: #218838;
 }
 
 .footer {

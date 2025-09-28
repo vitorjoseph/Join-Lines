@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const inputText = document.getElementById('inputText');
     const outputText = document.getElementById('outputText');
     const copyButton = document.getElementById('copyButton');
+    const validateSqlButton = document.getElementById('validateSqlButton');
     const pasteButton = document.getElementById('pasteButton');
     const clearButton = document.getElementById('clearButton');
     const undoButton = document.getElementById('undoButton');
@@ -70,7 +71,37 @@ document.addEventListener('DOMContentLoaded', () => {
         document.execCommand('copy');
         showNotification('✅ Texto copiado com sucesso!', 'success');
     });
-
+    
+    validateSqlButton.addEventListener('click', async () => {
+        const sqlQuery = outputText.value.trim();
+    
+        if (!sqlQuery) {
+            showNotification('⚠️ Nenhuma consulta SQL para validar!', 'warning');
+            return;
+        }
+    
+        try {
+            const SQL = await initSqlJs({ locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/${file}` });
+            const db = new SQL.Database();
+    
+            try {
+                const stmt = db.prepare(sqlQuery);
+                stmt.free(); // Libera a memória da verificação
+                showNotification('✅ SQL válido!', 'success');
+            } catch (error) {
+                if (error.message.includes("no such table") || error.message.includes("no such column")) {
+                    showNotification('✅ SQL válido.', 'warning');
+                } else {
+                    throw error; // Se for erro de sintaxe real, lança a exceção
+                }
+            }
+        } catch (error) {
+            showNotification(`❌ SQL inválido: ${error.message}`, 'error');
+        }
+    });
+    
+    
+    
     pasteButton.addEventListener('click', async () => {
         try {
             const text = await navigator.clipboard.readText();
